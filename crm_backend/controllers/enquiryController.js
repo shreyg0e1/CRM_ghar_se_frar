@@ -4,10 +4,10 @@ import Enquiry from "../models/Enquiry.js"; // Adjust path as needed
 // Add short enquiry (only fullName and mobile required)
 export const addShortEnquiry = async (req, res) => {
   try {
-    const { fullName, mobile } = req.body;
+    const { name, phone } = req.body;
 
     // Validation for short enquiry
-    if (!fullName || !mobile) {
+    if (!name || !phone) {
       return res.status(400).json({
         success: false,
         message: "Full name and mobile are required for short enquiry",
@@ -16,8 +16,8 @@ export const addShortEnquiry = async (req, res) => {
 
     // Create new short enquiry
     const newEnquiry = new Enquiry({
-      fullName,
-      mobile,
+      fullName:name,
+      mobile:phone,
       shortEnquiry: true,
     });
 
