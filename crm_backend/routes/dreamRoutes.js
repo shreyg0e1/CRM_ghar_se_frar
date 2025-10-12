@@ -10,10 +10,10 @@ import {
 const router = express.Router();
 
 // Add a new dream
-router.post("/dreams", addDream);
+router.post("/add", addDream);
 
 // Get all dreams
-router.get("/dreams", getAllDreams);
+router.get("/all", getAllDreams);
 
 // Get single dream by ID
 router.get("/dreams/:id", getDreamById);
