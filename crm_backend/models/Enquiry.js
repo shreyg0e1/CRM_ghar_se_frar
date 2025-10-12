@@ -21,15 +21,10 @@ const enquirySchema = new mongoose.Schema(
       type: String,
     },
     shortEnquiry: {
-      type: Boolean,
+    type:Boolean,
       default: true,
     },
-    packagePrice: {
-      type: String,
-    },
-    packageName: {
-      type: String,
-    },
+    
   },
   {
     timestamps: true,

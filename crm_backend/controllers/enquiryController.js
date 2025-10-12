@@ -42,16 +42,7 @@ export const addShortEnquiry = async (req, res) => {
 // Add full enquiry (all fields required)
 export const addFullEnquiry = async (req, res) => {
   try {
-    const {
-      fullName,
-      email,
-      mobile,
-      date,
-      traveller,
-      message,
-      packageName,
-      packagePrice,
-    } = req.body;
+    const { fullName, email, mobile, date, traveller, message } = req.body;
 
     // Validation for full enquiry
     if (!fullName || !email || !mobile || !date || !traveller || !message) {
@@ -70,8 +61,6 @@ export const addFullEnquiry = async (req, res) => {
       traveller,
       message,
       shortEnquiry: false,
-      packageName,
-      packagePrice,
     });
 
     // Save to database
