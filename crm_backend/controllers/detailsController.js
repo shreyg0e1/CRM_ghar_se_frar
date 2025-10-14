@@ -15,7 +15,7 @@ export const addDetails = async (req, res) => {
     return res.status(200).json({ success: true, details });
   } catch (error) {
     console.log(error);
-    return res.status.json(error);
+    return res.status(500).json(error);
   }
 };
 

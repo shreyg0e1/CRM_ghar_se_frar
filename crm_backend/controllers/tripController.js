@@ -22,6 +22,7 @@ export const addTrip = async (req, res) => {
       knowBeforeYouGo,
       price,
       durationThumbnail,
+      packageOptions, // ✅ added here
     } = req.body;
 
     // Create new trip
@@ -41,9 +42,10 @@ export const addTrip = async (req, res) => {
       packagingList: packagingList || [],
       packingTips: packingTips || [],
       overview: overview || [],
-      knowBeforeYouGo,
+      knowBeforeYouGo: knowBeforeYouGo || [],
       price,
       durationThumbnail,
+      packageOptions: packageOptions || [], // ✅ added here
     });
 
     await trip.save();
@@ -62,6 +64,7 @@ export const addTrip = async (req, res) => {
     });
   }
 };
+
 
 // Get a single trip by ID
 export const getSingleTrip = async (req, res) => {
@@ -90,5 +93,34 @@ export const getSingleTrip = async (req, res) => {
       message: "Internal server error",
       error: error.message,
     });
+  }
+};
+
+
+// ✅ Add a new package option to an existing trip
+export const addPackageOption = async (req, res) => {
+  try {
+    const { tripId } = req.params;
+    const { option, price } = req.body;
+
+    // Check if the trip exists
+    const trip = await Trip.findById(tripId);
+    if (!trip) {
+      return res.status(404).json({ message: "Trip not found" });
+    }
+
+    // Add new package option
+    trip.packageOptions.push({ option, price });
+
+    // Save updated trip
+    await trip.save();
+
+    res.status(200).json({
+      message: "Package option added successfully",
+      packageOptions: trip.packageOptions,
+    });
+  } catch (error) {
+    console.error("Error adding package option:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };

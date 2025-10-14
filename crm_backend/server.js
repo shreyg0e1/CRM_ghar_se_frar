@@ -7,7 +7,7 @@ import tripRoutes from "./routes/tripRoutes.js";
 import packageRoutes from "./routes/packageRoutes.js";
 import contactusRoutes from "./routes/contactUsRoutes.js";
 import enquiryRoutes from "./routes/enquireRoutes.js";
-import dreamRoutes from "./routes/dreamRoutes.js"
+import dreamRoutes from "./routes/dreamRoutes.js";
 
 connectDB();
 const app = express();
@@ -31,7 +31,6 @@ app.use("/contact", contactusRoutes);
 app.use("/enquiry", enquiryRoutes);
 
 app.use("/dream", dreamRoutes);
-
 
 app.listen(8000, () => {
   console.log("Server is running on port 8000");

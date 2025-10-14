@@ -23,6 +23,16 @@ const tripSchema = new mongoose.Schema(
     video: {
       type: String,
     },
+    packageOptions: [
+      {
+        option: {
+          type: String,
+        },
+        price: {
+          type: String,
+        },
+      },
+    ],
     images: [
       {
         type: String,
@@ -61,12 +71,16 @@ const tripSchema = new mongoose.Schema(
     ],
     offering: [
       {
-        include: [{
-          type: String,
-        }],
-        exclude: [{
-          type: String,
-        }],
+        include: [
+          {
+            type: String,
+          },
+        ],
+        exclude: [
+          {
+            type: String,
+          },
+        ],
       },
     ],
     packagingList: [
@@ -108,9 +122,11 @@ const tripSchema = new mongoose.Schema(
         ],
       },
     ],
-    knowBeforeYouGo: [{
-      type: String,
-    }],
+    knowBeforeYouGo: [
+      {
+        type: String,
+      },
+    ],
   },
   {
     timestamps: true,
