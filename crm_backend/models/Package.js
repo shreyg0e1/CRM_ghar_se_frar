@@ -6,6 +6,9 @@ const packageSchema = new mongoose.Schema({
     required: [true, "Package name is required"],
     trim: true,
   },
+  place:{
+    type:String
+  },
   tours: [
     {
       type: mongoose.Schema.Types.ObjectId,

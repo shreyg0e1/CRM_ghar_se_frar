@@ -2,8 +2,8 @@ import Package from "../models/Package.js";
 
 export const addPackage = async (req, res) => {
   try {
-    const { name } = req.body;
-    const packageData = new Package({ name });
+    const { name , place } = req.body;
+    const packageData = new Package({ name , place });
     await packageData.save();
     return res.status(200).json({ success: true, packageData });
   } catch (error) {
