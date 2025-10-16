@@ -127,7 +127,11 @@ const tripSchema = new mongoose.Schema(
         type: String,
       },
     ],
+    pdf: {
+      type: String,
+    },
   },
+
   {
     timestamps: true,
   }

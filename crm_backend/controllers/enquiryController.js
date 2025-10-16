@@ -4,7 +4,7 @@ import Enquiry from "../models/Enquiry.js"; // Adjust path as needed
 // Add short enquiry (only fullName and mobile required)
 export const addShortEnquiry = async (req, res) => {
   try {
-    const { name, phone } = req.body;
+    const { name, phone, packageName, price } = req.body;
 
     // Validation for short enquiry
     if (!name || !phone) {
@@ -16,9 +16,11 @@ export const addShortEnquiry = async (req, res) => {
 
     // Create new short enquiry
     const newEnquiry = new Enquiry({
-      fullName:name,
-      mobile:phone,
+      fullName: name,
+      mobile: phone,
       shortEnquiry: true,
+      packageName,
+      price,
     });
 
     // Save to database
@@ -42,10 +44,28 @@ export const addShortEnquiry = async (req, res) => {
 // Add full enquiry (all fields required)
 export const addFullEnquiry = async (req, res) => {
   try {
-    const { fullName, email, mobile, date, traveller, message } = req.body;
+    const {
+      fullName,
+      email,
+      mobile,
+      date,
+      traveller,
+      message,
+      packageName,
+      price,
+    } = req.body;
 
     // Validation for full enquiry
-    if (!fullName || !email || !mobile || !date || !traveller || !message) {
+    if (
+      !fullName ||
+      !email ||
+      !mobile ||
+      !date ||
+      !traveller ||
+      !message ||
+      !packageName ||
+      !price 
+    ) {
       return res.status(400).json({
         success: false,
         message: "All fields are required for full enquiry",
@@ -61,6 +81,8 @@ export const addFullEnquiry = async (req, res) => {
       traveller,
       message,
       shortEnquiry: false,
+      packageName,
+      price,
     });
 
     // Save to database
